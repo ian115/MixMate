@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TableLayout
+        android:layout_width="726dp"
+        android:layout_height="192dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/TitleTrack1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Title"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/SongProgress1"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:text="00:00 / 00:00"
+                android:textSize="14sp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/FileTrack1"
+                android:layout_width="152dp"
+                android:layout_height="54dp"
+                android:text="Choose File" />
+
+            <Button
+                android:id="@+id/PlayTrack1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PLAY" />
+
+            <SeekBar
+                android:id="@+id/seekbar1"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:padding="10dp" />
+
+            <SeekBar
+                android:id="@+id/volumebar1"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:padding="10dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/TitleTrack2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Title"
+                android:textSize="18dp" />
+
+            <TextView
+                android:id="@+id/SongProgress2"
+                android:layout_width="118dp"
+                android:layout_height="match_parent"
+                android:textSize="14sp"
+                android:text="00:00 / 00:00" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/FileTrack2"
+                android:layout_width="152dp"
+                android:layout_height="54dp"
+                android:text="Choose File 2" />
+
+            <Button
+                android:id="@+id/PlayTrack2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PLAY" />
+
+            <SeekBar
+                android:id="@+id/seekbar2"
+                android:layout_width="250dp"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:padding="10dp" />
+
+            <SeekBar
+                android:id="@+id/volumebar2"
+                android:layout_width="180dp"
+                android:layout_height="match_parent"
+                android:max="100"
+                android:padding="10dp"
+                android:paddingLeft="32dp" />
+        </TableRow>
+    </TableLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
