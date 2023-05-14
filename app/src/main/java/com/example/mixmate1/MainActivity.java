@@ -34,14 +34,18 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekbar1;
     SeekBar seekbar2;
 
+    SeekBar volumebar1;
+    SeekBar volumebar2;
+
     String duration1;
     String duration2;
     MediaPlayer mediaPlayer1;
     MediaPlayer mediaPlayer2;
     ScheduledExecutorService timer1;
     ScheduledExecutorService timer2;
-    public static final int Choose_File =99;
-    public static final int Choose_File2 =98;
+    public static final int maxVolume = 100;
+    public static final int Choose_File = 99;
+    public static final int Choose_File2 = 98;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class MainActivity extends AppCompatActivity {
         SongProgress2 = findViewById(R.id.SongProgress2);
         seekbar1 = findViewById(R.id.seekbar1);
         seekbar2 = findViewById(R.id.seekbar2);
+        volumebar1 = findViewById(R.id.volumebar1);
+        volumebar2 = findViewById(R.id.volumebar2);
 
         /**
          * Open File
@@ -169,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (mediaPlayer1 != null) {
-                    mediaPlayer1.seekTo(seekbar1.getProgress());
+                    mediaPlayer1.seekTo(seekBar.getProgress());
                 }
             }
         });
@@ -191,15 +197,64 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 if (mediaPlayer2 != null) {
-                    mediaPlayer2.seekTo(seekbar2.getProgress());
+                    mediaPlayer2.seekTo(seekBar.getProgress());
                 }
+            }
+        });
+
+        /**
+         * Volume Bars of Tracks
+         */
+        volumebar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //nothing
+                if (mediaPlayer1 != null) {
+                    // an equation is needed as volume does not increase linearly
+                    final float volume = (float) (1 -
+                            (Math.log(maxVolume - seekBar.getProgress()) / Math.log(maxVolume)));
+                    mediaPlayer1.setVolume(volume, volume);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+        });
+        volumebar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //nothing
+                if (mediaPlayer2 != null) {
+                    // Equation is needed as volume does not increase linearly
+                    final float volume = (float) (1 -
+                            (Math.log(maxVolume - seekBar.getProgress()) / Math.log(maxVolume)));
+                    mediaPlayer2.setVolume(volume, volume);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //nothing
             }
         });
 
         PlayTrack1.setEnabled(false);
         PlayTrack2.setEnabled(false);
+        volumebar1.setProgress(100);
+        volumebar2.setProgress(100);
     }
-
     /**
      * Open File Continued. Read the uri from the file selected to put into media player.
      * @param requestCode to tell the activity is ours

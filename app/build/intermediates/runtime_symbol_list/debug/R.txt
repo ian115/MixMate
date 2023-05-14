@@ -2983,6 +2983,8 @@ int id east 0x7f0800b1
 int id edit_query 0x7f0800b2
 int id elastic 0x7f0800b3
 int id embed 0x7f0800b4
+int id emptyText 0x7f0801f8
+int id emptyText2 0x7f0801f9
 int id end 0x7f0800b5
 int id endToStart 0x7f0800b6
 int id enterAlways 0x7f0800b7

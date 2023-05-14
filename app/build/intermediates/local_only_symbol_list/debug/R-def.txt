@@ -17,6 +17,8 @@ id SongProgress1
 id SongProgress2
 id TitleTrack1
 id TitleTrack2
+id emptyText
+id emptyText2
 id seekbar1
 id seekbar2
 id volumebar1

@@ -26,6 +26,11 @@
                 android:textSize="18sp" />
 
             <TextView
+                android:id="@+id/emptyText2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
                 android:id="@+id/SongProgress1"
                 android:layout_width="118dp"
                 android:layout_height="match_parent"
@@ -76,11 +81,17 @@
                 android:textSize="18dp" />
 
             <TextView
+                android:id="@+id/emptyText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <TextView
                 android:id="@+id/SongProgress2"
                 android:layout_width="118dp"
                 android:layout_height="match_parent"
                 android:textSize="14sp"
                 android:text="00:00 / 00:00" />
+
         </TableRow>
 
         <TableRow
