@@ -13,8 +13,12 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.ToggleButton;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -50,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ToggleButton SetLooping1 = findViewById(R.id.SetLooping1);
+        SeekBar SpeedBar1 = findViewById(R.id.SpeedBar1);
+        SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
+        ImageButton ResetSpeed1 = findViewById(R.id.ResetSpeed1);
+        ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
+
         Button FileTrack1 = findViewById(R.id.FileTrack1);
         Button FileTrack2 = findViewById(R.id.FileTrack2);
         PlayTrack1 = findViewById(R.id.PlayTrack1);
@@ -63,7 +73,91 @@ public class MainActivity extends AppCompatActivity {
         SeekBar VolumeBar1 = findViewById(R.id.VolumeBar1);
         SeekBar VolumeBar2 = findViewById(R.id.VolumeBar2);
 
+
+        /** ==================================================================
+         *                      Top - Effects Panel
+         * Loop
+         */
+        SetLooping1.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton toggleButton, boolean isChecked) {
+                if (mediaPlayer1 != null) {
+                    if (isChecked) {
+                        mediaPlayer1.setLooping(true);
+                    } else {
+                        mediaPlayer1.setLooping(false);
+                    }
+                } else {
+                    SetLooping1.setChecked(false);
+                }
+            }
+        });
         /**
+         * Speed
+         */
+        SpeedBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //nothing
+                if ((mediaPlayer1 != null) && (mediaPlayer1.isPlaying())) {
+                    mediaPlayer1.setPlaybackParams(
+                            mediaPlayer1.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+        });
+        SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                //nothing
+                if ((mediaPlayer2 != null) && (mediaPlayer2.isPlaying())) {
+                    mediaPlayer2.setPlaybackParams(
+                            mediaPlayer2.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                //nothing
+            }
+        });
+        ResetSpeed1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer1 != null) {
+                    mediaPlayer1.setPlaybackParams(
+                            mediaPlayer1.getPlaybackParams().setSpeed(1));
+                }
+                SpeedBar1.setProgress(50);
+            }
+        });
+        ResetSpeed2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer2 != null) {
+                    mediaPlayer2.setPlaybackParams(
+                            mediaPlayer2.getPlaybackParams().setSpeed(1));
+                }
+                SpeedBar2.setProgress(50);
+            }
+        });
+
+        /** ==================================================================
+         *                      Bottom - Media Playback
          * Open File
          */
         FileTrack1.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
                         PlayTrack1.setText("PLAY");
                         timer1.shutdown();
                     } else {
-                        //mediaPlayer1.setPlaybackParams(mediaPlayer1.getPlaybackParams().setSpeed(0.5f));
                         mediaPlayer1.start();
                         PlayTrack1.setText("PAUSE");
 
@@ -248,6 +341,8 @@ public class MainActivity extends AppCompatActivity {
         PlayTrack2.setEnabled(false);
         VolumeBar1.setProgress(100);
         VolumeBar2.setProgress(100);
+        SpeedBar1.setProgress(50);
+        SpeedBar2.setProgress(50);
     }
 
     /**

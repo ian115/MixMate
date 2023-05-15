@@ -2730,6 +2730,8 @@ drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
 drawable ic_search_black_24
+drawable loopingtogglebutton
+drawable loopingtogglebuttonbg
 drawable m3_appbar_background
 drawable m3_avd_hide_password
 drawable m3_avd_show_password
@@ -2801,10 +2803,14 @@ drawable notification_template_icon_bg
 drawable notification_template_icon_low_bg
 drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
+drawable setlooping
+drawable setloopingoff
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
+drawable tracksettings
 id ALT
+id AdSpace
 id BOTTOM_END
 id BOTTOM_START
 id CTRL
@@ -2820,6 +2826,8 @@ id META
 id NO_DEBUG
 id PlayTrack1
 id PlayTrack2
+id ResetSpeed1
+id ResetSpeed2
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -2827,11 +2835,13 @@ id SHOW_PROGRESS
 id SYM
 id SeekBar1
 id SeekBar2
+id SetLooping1
 id SongProgress1
 id SongProgress2
+id SpeedBar1
+id SpeedBar2
 id TOP_END
 id TOP_START
-id TableBottom
 id TitleTrack1
 id TitleTrack2
 id Track1EffectsButton
@@ -2911,6 +2921,7 @@ id auto
 id autoComplete
 id autoCompleteToEnd
 id autoCompleteToStart
+id background
 id barrier
 id baseline
 id beginOnFirstDraw
@@ -3061,6 +3072,8 @@ id legacy
 id line1
 id line3
 id linear
+id linearLayout
+id linearLayout2
 id listMode
 id list_item
 id m3_side_sheet
