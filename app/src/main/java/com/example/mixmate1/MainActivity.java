@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity {
         TextView SongProgress2 = findViewById(R.id.SongProgress2);
         SeekBar1 = findViewById(R.id.SeekBar1);
         seekbar2 = findViewById(R.id.SeekBar2);
-        SeekBar volumebar1 = findViewById(R.id.VolumeBar1);
-        SeekBar volumebar2 = findViewById(R.id.VolumeBar2);
+        SeekBar VolumeBar1 = findViewById(R.id.VolumeBar1);
+        SeekBar VolumeBar2 = findViewById(R.id.VolumeBar2);
 
         /**
          * Open File
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Volume Bars of Tracks
          */
-        volumebar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        VolumeBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //nothing
@@ -221,7 +221,7 @@ public class MainActivity extends AppCompatActivity {
                 //nothing
             }
         });
-        volumebar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        VolumeBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //nothing
@@ -246,8 +246,8 @@ public class MainActivity extends AppCompatActivity {
 
         PlayTrack1.setEnabled(false);
         PlayTrack2.setEnabled(false);
-        volumebar1.setProgress(100);
-        volumebar2.setProgress(100);
+        VolumeBar1.setProgress(100);
+        VolumeBar2.setProgress(100);
     }
 
     /**

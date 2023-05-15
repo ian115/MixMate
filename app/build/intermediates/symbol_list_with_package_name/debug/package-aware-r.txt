@@ -2811,7 +2811,11 @@ id CTRL
 id FUNCTION
 id FileTrack1
 id FileTrack2
-id LoopTrack
+id GuidelineColumn1
+id GuidelineRow1
+id GuidelineRow1end
+id GuidelineRow2
+id GuidelineRow2end
 id META
 id NO_DEBUG
 id PlayTrack1
@@ -2825,11 +2829,13 @@ id SeekBar1
 id SeekBar2
 id SongProgress1
 id SongProgress2
-id SpeedBar1
 id TOP_END
 id TOP_START
+id TableBottom
 id TitleTrack1
 id TitleTrack2
+id Track1EffectsButton
+id Track2EffectsButton
 id VolumeBar1
 id VolumeBar2
 id accelerate
@@ -3023,6 +3029,8 @@ id graph_wrap
 id group_divider
 id grouping
 id groups
+id guideline
+id guideline2
 id header_title
 id hideable
 id home
@@ -3035,8 +3043,6 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
-id imageButton
-id imageButton2
 id immediateStop
 id included
 id indeterminate

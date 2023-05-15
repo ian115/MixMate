@@ -8,12 +8,12 @@
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-hdpi\\ic_action_name.png"
     },
     {
-        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
-        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-anydpi-v26\\ic_launcher.xml"
-    },
-    {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-hdpi_ic_launcher.webp.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-hdpi\\ic_launcher.webp"
+    },
+    {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-anydpi-v26_ic_launcher.xml.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-anydpi-v26\\ic_launcher.xml"
     },
     {
         "merged": "com.example.mixmate1.app-merged_res-29:/layout_activity_main.xml.flat",
