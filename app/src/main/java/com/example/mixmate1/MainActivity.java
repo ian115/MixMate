@@ -8,6 +8,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -25,18 +26,10 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     TextView TitleTrack1;
     TextView TitleTrack2;
-    TextView SongProgress1;
-    TextView SongProgress2;
-    Button FileTrack1;
-    Button FileTrack2;
     Button PlayTrack1;
     Button PlayTrack2;
-    SeekBar seekbar1;
+    SeekBar SeekBar1;
     SeekBar seekbar2;
-
-    SeekBar volumebar1;
-    SeekBar volumebar2;
-
     String duration1;
     String duration2;
     MediaPlayer mediaPlayer1;
@@ -57,18 +50,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FileTrack1 = findViewById(R.id.FileTrack1);
-        FileTrack2 = findViewById(R.id.FileTrack2);
+        Button FileTrack1 = findViewById(R.id.FileTrack1);
+        Button FileTrack2 = findViewById(R.id.FileTrack2);
         PlayTrack1 = findViewById(R.id.PlayTrack1);
         PlayTrack2 = findViewById(R.id.PlayTrack2);
         TitleTrack1 = findViewById(R.id.TitleTrack1);
         TitleTrack2 = findViewById(R.id.TitleTrack2);
-        SongProgress1 = findViewById(R.id.SongProgress1);
-        SongProgress2 = findViewById(R.id.SongProgress2);
-        seekbar1 = findViewById(R.id.seekbar1);
-        seekbar2 = findViewById(R.id.seekbar2);
-        volumebar1 = findViewById(R.id.volumebar1);
-        volumebar2 = findViewById(R.id.volumebar2);
+        TextView SongProgress1 = findViewById(R.id.SongProgress1);
+        TextView SongProgress2 = findViewById(R.id.SongProgress2);
+        SeekBar1 = findViewById(R.id.SeekBar1);
+        seekbar2 = findViewById(R.id.SeekBar2);
+        SeekBar volumebar1 = findViewById(R.id.VolumeBar1);
+        SeekBar volumebar2 = findViewById(R.id.VolumeBar2);
 
         /**
          * Open File
@@ -114,8 +107,8 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if (mediaPlayer1 != null) {
-                                    if (!seekbar1.isPressed()) {
-                                        seekbar1.setProgress(mediaPlayer1.getCurrentPosition());
+                                    if (!SeekBar1.isPressed()) {
+                                        SeekBar1.setProgress(mediaPlayer1.getCurrentPosition());
                                     }
                                 }
                             }
@@ -143,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void run() {
                                 if (mediaPlayer2 != null) {
+                                    // reset the seek bar
                                     if (!seekbar2.isPressed()) {
                                         seekbar2.setProgress(mediaPlayer2.getCurrentPosition());
                                     }
@@ -157,15 +151,15 @@ public class MainActivity extends AppCompatActivity {
         /**
          * Song Progress (Time) and Seek functionality
          */
-        seekbar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (mediaPlayer1 != null){
-                    int millis = mediaPlayer1.getCurrentPosition();
-                    long total_secs = TimeUnit.SECONDS.convert(millis, TimeUnit.MILLISECONDS);
-                    long mins = TimeUnit.MINUTES.convert(total_secs, TimeUnit.SECONDS);
-                    long secs = total_secs - (mins*60);
-                    SongProgress1.setText(mins + ":" + secs + " / " + duration1);
+                    int currentMilliseconds = mediaPlayer1.getCurrentPosition();
+                    long currentSeconds = currentMilliseconds / 1000;
+                    long showMinutes = currentSeconds / 60;
+                    long showSeconds = currentSeconds - (showMinutes * 60);
+                    SongProgress1.setText(showMinutes + ":" + showSeconds + " / " + duration1);
                 }
             }
             @Override
@@ -183,11 +177,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (mediaPlayer2 != null){
-                    int millis = mediaPlayer2.getCurrentPosition();
-                    long total_secs = TimeUnit.SECONDS.convert(millis, TimeUnit.MILLISECONDS);
-                    long mins = TimeUnit.MINUTES.convert(total_secs, TimeUnit.SECONDS);
-                    long secs = total_secs - (mins*60);
-                    SongProgress2.setText(mins + ":" + secs + " / " + duration2);
+                    int currentMilliseconds = mediaPlayer2.getCurrentPosition();
+                    long currentSeconds = currentMilliseconds / 1000;
+                    long showMinutes = currentSeconds / 60;
+                    long showSeconds = currentSeconds - (showMinutes * 60);
+                    SongProgress2.setText(showMinutes + ":" + showSeconds + " / " + duration2);
                 }
             }
             @Override
@@ -255,6 +249,7 @@ public class MainActivity extends AppCompatActivity {
         volumebar1.setProgress(100);
         volumebar2.setProgress(100);
     }
+
     /**
      * Open File Continued. Read the uri from the file selected to put into media player.
      * @param requestCode to tell the activity is ours
@@ -294,14 +289,13 @@ public class MainActivity extends AppCompatActivity {
                 TitleTrack1.setText(getNameFromUri(uri));
                 PlayTrack1.setEnabled(true);
 
-                int millis = mediaPlayer1.getDuration();
-                long total_secs = TimeUnit.SECONDS.convert(millis, TimeUnit.MILLISECONDS);
-                long mins = TimeUnit.MINUTES.convert(total_secs, TimeUnit.SECONDS);
-                long secs = total_secs - (mins * 60);
-                duration1 = mins + ":" + secs;
-                SongProgress1.setText("00:00 / " + duration1);
-                seekbar1.setMax(millis);
-                seekbar1.setProgress(0);
+                int maxMilliseconds = mediaPlayer1.getDuration();
+                long maxSeconds = maxMilliseconds / 1000;
+                long maxMinutes = maxSeconds / 60;
+                long showMaxSeconds = maxSeconds - (maxMinutes * 60);
+                duration1 = maxMinutes + ":" + showMaxSeconds;
+                SeekBar1.setMax(maxMilliseconds);
+                SeekBar1.setProgress(0);
 
                 mediaPlayer1.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
@@ -330,13 +324,12 @@ public class MainActivity extends AppCompatActivity {
                 TitleTrack2.setText(getNameFromUri(uri));
                 PlayTrack2.setEnabled(true);
 
-                int millis = mediaPlayer2.getDuration();
-                long total_secs = TimeUnit.SECONDS.convert(millis, TimeUnit.MILLISECONDS);
-                long mins = TimeUnit.MINUTES.convert(total_secs, TimeUnit.SECONDS);
-                long secs = total_secs - (mins * 60);
-                duration2 = mins + ":" + secs;
-                SongProgress2.setText("00:00 / " + duration2);
-                seekbar2.setMax(millis);
+                int maxMilliseconds = mediaPlayer2.getDuration();
+                long maxSeconds = maxMilliseconds / 1000;
+                long maxMinutes = maxSeconds / 60;
+                long showMaxSeconds = maxSeconds - (maxMinutes * 60);
+                duration2 = maxMinutes + ":" + showMaxSeconds;
+                seekbar2.setMax(maxMilliseconds);
                 seekbar2.setProgress(0);
 
                 mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -367,8 +360,8 @@ public class MainActivity extends AppCompatActivity {
         if (cursor != null) {
             cursor.close();
         }
-        if (fileName.length() >= 18) {
-            fileName = fileName.substring(0,18);
+        if (fileName.length() > 21) {
+            fileName = fileName.substring(0, 21) + "..";
         }
         return fileName;
     }
@@ -383,6 +376,10 @@ public class MainActivity extends AppCompatActivity {
         releaseMediaPlayer(2);
     }
 
+    /**
+     * Called when media player is finished.
+     * @param trackNumber Track 1 or 2
+     */
     public void releaseMediaPlayer(Integer trackNumber) {
         if (trackNumber == 1) {
             if (timer1 != null) {
@@ -394,9 +391,8 @@ public class MainActivity extends AppCompatActivity {
             }
             PlayTrack1.setEnabled(false);
             TitleTrack1.setText("");
-            SongProgress1.setText("00:00 / 00:00");
-            seekbar1.setMax(100);
-            seekbar1.setProgress(0);
+            SeekBar1.setMax(100);
+            SeekBar1.setProgress(0);
         } else if (trackNumber == 2) {
             if (timer2 != null) {
                 timer2.shutdown();
@@ -407,7 +403,6 @@ public class MainActivity extends AppCompatActivity {
             }
             PlayTrack2.setEnabled(false);
             TitleTrack2.setText("");
-            SongProgress2.setText("00:00 / 00:00");
             seekbar2.setMax(100);
             seekbar2.setProgress(0);
         }

@@ -2715,6 +2715,7 @@ drawable design_ic_visibility
 drawable design_ic_visibility_off
 drawable design_password_eye
 drawable design_snackbar_background
+drawable ic_action_name
 drawable ic_arrow_back_black_24
 drawable ic_clear_black_24
 drawable ic_clock_black_24dp
@@ -2810,6 +2811,7 @@ id CTRL
 id FUNCTION
 id FileTrack1
 id FileTrack2
+id LoopTrack
 id META
 id NO_DEBUG
 id PlayTrack1
@@ -2819,12 +2821,17 @@ id SHOW_ALL
 id SHOW_PATH
 id SHOW_PROGRESS
 id SYM
+id SeekBar1
+id SeekBar2
 id SongProgress1
 id SongProgress2
+id SpeedBar1
 id TOP_END
 id TOP_START
 id TitleTrack1
 id TitleTrack2
+id VolumeBar1
+id VolumeBar2
 id accelerate
 id accessibility_action_clickable_span
 id accessibility_custom_action_0
@@ -2984,8 +2991,6 @@ id east
 id edit_query
 id elastic
 id embed
-id emptyText
-id emptyText2
 id end
 id endToStart
 id enterAlways
@@ -3030,6 +3035,8 @@ id ifRoom
 id ignore
 id ignoreRequest
 id image
+id imageButton
+id imageButton2
 id immediateStop
 id included
 id indeterminate
@@ -3195,8 +3202,6 @@ id search_view_status_bar_spacer
 id search_view_toolbar
 id search_view_toolbar_container
 id search_voice_btn
-id seekbar1
-id seekbar2
 id select_dialog_listview
 id selected
 id selection_type
@@ -3298,8 +3303,6 @@ id view_tree_saved_state_registry_owner
 id view_tree_view_model_store_owner
 id visible
 id visible_removing_fragment_view_tag
-id volumebar1
-id volumebar2
 id west
 id withText
 id with_icon
