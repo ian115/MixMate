@@ -2805,6 +2805,7 @@ drawable notification_tile_bg
 drawable notify_panel_notification_icon_bg
 drawable setlooping
 drawable setloopingoff
+drawable skiptrack
 drawable test_level_drawable
 drawable tooltip_frame_dark
 drawable tooltip_frame_light
@@ -2822,12 +2823,12 @@ id GuidelineRow1
 id GuidelineRow1end
 id GuidelineRow2
 id GuidelineRow2end
+id GuidelineTopPanel1
 id META
 id NO_DEBUG
 id PlayTrack1
 id PlayTrack2
 id ResetSpeed1
-id ResetSpeed2
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -2836,10 +2837,10 @@ id SYM
 id SeekBar1
 id SeekBar2
 id SetLooping1
+id SkipTrack1
 id SongProgress1
 id SongProgress2
 id SpeedBar1
-id SpeedBar2
 id TOP_END
 id TOP_START
 id TitleTrack1
@@ -3041,7 +3042,12 @@ id group_divider
 id grouping
 id groups
 id guideline
+id guideline10
+id guideline11
+id guideline12
+id guideline13
 id guideline2
+id guideline9
 id header_title
 id hideable
 id home
@@ -3283,6 +3289,7 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
+id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
@@ -3563,6 +3570,7 @@ string error_icon_content_description
 string exposed_dropdown_menu_content_description
 string fab_transformation_scrim_behavior
 string fab_transformation_sheet_behavior
+string hello_blank_fragment
 string hide_bottom_view_on_scroll_behavior
 string icon_content_description
 string item_view_role_description

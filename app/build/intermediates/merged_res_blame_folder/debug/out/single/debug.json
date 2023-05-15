@@ -20,6 +20,10 @@
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-hdpi\\ic_launcher.webp"
     },
     {
+        "merged": "com.example.mixmate1.app-merged_res-29:/layout_activity_main.xml.flat",
+        "source": "com.example.mixmate1.app-main-31:/layout/activity_main.xml"
+    },
+    {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\layout_activity_main.xml.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\layout\\activity_main.xml"
     },
@@ -64,6 +68,10 @@
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\xml\\data_extraction_rules.xml"
     },
     {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-mdpi_skiptrack.png.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-mdpi\\skiptrack.png"
+    },
+    {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-hdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-hdpi\\ic_launcher_round.webp"
     },
@@ -92,6 +100,14 @@
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-xxhdpi\\ic_launcher.webp"
     },
     {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-anydpi_skiptrack.xml.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-anydpi\\skiptrack.xml"
+    },
+    {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-hdpi_skiptrack.png.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-hdpi\\skiptrack.png"
+    },
+    {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-mdpi_setloopingoff.png.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-mdpi\\setloopingoff.png"
     },
@@ -102,6 +118,10 @@
     {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-xxxhdpi_ic_launcher_round.webp.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-xxxhdpi\\ic_launcher_round.webp"
+    },
+    {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\layout_fragment_track1.xml.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\layout\\fragment_track1.xml"
     },
     {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-xhdpi_tracksettings.png.flat",
@@ -128,10 +148,6 @@
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\xml\\backup_rules.xml"
     },
     {
-        "merged": "com.example.mixmate1.app-merged_res-29:/drawable_loopingtogglebutton.xml.flat",
-        "source": "com.example.mixmate1.app-main-31:/drawable/loopingtogglebutton.xml"
-    },
-    {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\mipmap-anydpi-v33_ic_launcher.xml.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\mipmap-anydpi-v33\\ic_launcher.xml"
     },
@@ -146,6 +162,14 @@
     {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-xxhdpi_setlooping.png.flat",
         "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-xxhdpi\\setlooping.png"
+    },
+    {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-xhdpi_skiptrack.png.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-xhdpi\\skiptrack.png"
+    },
+    {
+        "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-xxhdpi_skiptrack.png.flat",
+        "source": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-main-31:\\drawable-xxhdpi\\skiptrack.png"
     },
     {
         "merged": "C:\\Users\\ianla\\.gradle\\daemon\\7.5\\com.example.mixmate1.app-merged_res-29:\\drawable-xhdpi_ic_action_name.png.flat",

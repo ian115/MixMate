@@ -21,6 +21,8 @@ import android.widget.ToggleButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import java.io.IOException;
 import java.util.concurrent.Executors;
@@ -36,8 +38,8 @@ public class MainActivity extends AppCompatActivity {
     SeekBar seekbar2;
     String duration1;
     String duration2;
-    MediaPlayer mediaPlayer1;
-    MediaPlayer mediaPlayer2;
+    public static MediaPlayer mediaPlayer1;
+    public static MediaPlayer mediaPlayer2;
     ScheduledExecutorService timer1;
     ScheduledExecutorService timer2;
     public static final int maxVolume = 100;
@@ -56,9 +58,9 @@ public class MainActivity extends AppCompatActivity {
 
         ToggleButton SetLooping1 = findViewById(R.id.SetLooping1);
         SeekBar SpeedBar1 = findViewById(R.id.SpeedBar1);
-        SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
+        //SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
         ImageButton ResetSpeed1 = findViewById(R.id.ResetSpeed1);
-        ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
+        //ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
 
         Button FileTrack1 = findViewById(R.id.FileTrack1);
         Button FileTrack2 = findViewById(R.id.FileTrack2);
@@ -115,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
                 //nothing
             }
         });
-        SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        /*SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //nothing
@@ -134,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //nothing
             }
-        });
+        });*/
         ResetSpeed1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
                 SpeedBar1.setProgress(50);
             }
         });
-        ResetSpeed2.setOnClickListener(new View.OnClickListener() {
+        /*ResetSpeed2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mediaPlayer2 != null) {
@@ -154,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 SpeedBar2.setProgress(50);
             }
-        });
+        });*/
 
         /** ==================================================================
          *                      Bottom - Media Playback
@@ -342,7 +344,10 @@ public class MainActivity extends AppCompatActivity {
         VolumeBar1.setProgress(100);
         VolumeBar2.setProgress(100);
         SpeedBar1.setProgress(50);
-        SpeedBar2.setProgress(50);
+        //SpeedBar2.setProgress(50);
+        SetLooping1.setText(null);
+        SetLooping1.setTextOn(null);
+        SetLooping1.setTextOff(null);
     }
 
     /**
@@ -501,5 +506,14 @@ public class MainActivity extends AppCompatActivity {
             seekbar2.setMax(100);
             seekbar2.setProgress(0);
         }
+    }
+
+    public static MediaPlayer getMediaPlayer(Integer trackNumber){
+        if (trackNumber == 1) {
+            return mediaPlayer1;
+        } else {
+            return mediaPlayer2;
+        }
+
     }
 }
