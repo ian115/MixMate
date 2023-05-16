@@ -16,6 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/TopTitleTrack2"
         android:layout_width="0dp"
@@ -28,10 +29,10 @@
 
     <ImageButton
         android:id="@+id/SkipTrack1"
-        android:background="@null"
-        android:scaleType="fitXY"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@null"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintHorizontal_bias="0.5"
@@ -53,6 +54,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="center"
@@ -94,10 +96,10 @@
     <!--Same thing again, for Track player 2-->
     <ImageButton
         android:id="@+id/SkipTrack2"
-        android:background="@null"
-        android:scaleType="fitXY"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:background="@null"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/guideline10"
         app:layout_constraintEnd_toStartOf="@+id/guideline11"
         app:layout_constraintHorizontal_bias="0.5"
@@ -146,6 +148,7 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="4dp"
                 android:text="Speed" />
+
             <ImageButton
                 android:id="@+id/ResetSpeed2"
                 android:layout_width="wrap_content"
@@ -156,21 +159,13 @@
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/GuidelineTopPanel1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
-
-
     <!-- Bottom Media Player -->
 
     <TextView
         android:id="@+id/TitleTrack1"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_span="2"
+        android:layout_height="0dp"
+        android:paddingTop="2dp"
         android:text="Song 1"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow1"
@@ -206,6 +201,7 @@
         android:layout_height="0dp"
         android:max="100"
         android:paddingLeft="32dp"
+        android:paddingTop="10dp"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow1end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -252,35 +248,35 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.43" />
+        app:layout_constraintGuide_percent="0.40" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GuidelineRow1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.49" />
+        app:layout_constraintGuide_percent="0.48" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GuidelineRow1end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.61" />
+        app:layout_constraintGuide_percent="0.60" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GuidelineRow2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.67" />
+        app:layout_constraintGuide_percent="0.68" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GuidelineRow2end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.79" />
+        app:layout_constraintGuide_percent="0.80" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/GuidelineColumn1"
@@ -323,8 +319,8 @@
     <TextView
         android:id="@+id/TitleTrack2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_span="2"
+        android:layout_height="0dp"
+        android:paddingTop="2dp"
         android:text="Song 2"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow2"
@@ -360,6 +356,7 @@
         android:layout_height="0dp"
         android:max="100"
         android:paddingLeft="32dp"
+        android:paddingTop="8dp"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow2end"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -399,14 +396,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.12" />
+        app:layout_constraintGuide_percent="0.14" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.27" />
+        app:layout_constraintGuide_percent="0.29" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline11"
@@ -428,6 +425,49 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.59" />
+
+    <Button
+        android:id="@+id/ReverbButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="0dp"
+        android:minHeight="15dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Reverb"
+        android:textSize="8sp"
+        app:iconPadding="0dp"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.421"
+        app:layout_constraintStart_toStartOf="@+id/guideline13"
+        app:layout_constraintTop_toTopOf="@+id/guideline9" />
+
+    <Button
+        android:id="@+id/BassBoostButton"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:minWidth="0dp"
+        android:minHeight="15dp"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:text="Bass Boost"
+        android:textSize="8sp"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline13" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.71" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

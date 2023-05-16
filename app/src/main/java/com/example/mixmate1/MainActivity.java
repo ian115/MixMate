@@ -1,17 +1,14 @@
 package com.example.mixmate1;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
-import android.media.audiofx.BassBoost;
-import android.media.audiofx.PresetReverb;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,15 +20,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
-import java.text.DecimalFormat;
+import java.util.ArrayList;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -39,18 +32,25 @@ import java.util.concurrent.TimeUnit;
 public class MainActivity extends AppCompatActivity {
     TextView TopTitleTrack1;
     TextView TopTitleTrack2;
+    SeekBar SpeedBar1;
+    SeekBar SpeedBar2;
     TextView TitleTrack1;
     TextView TitleTrack2;
     Button PlayTrack1;
     Button PlayTrack2;
     SeekBar SeekBar1;
-    SeekBar seekbar2;
+    SeekBar SeekBar2;
     String duration1;
     String duration2;
+    SeekBar VolumeBar1;
+    SeekBar VolumeBar2;
     public static MediaPlayer mediaPlayer1;
     public static MediaPlayer mediaPlayer2;
     ScheduledExecutorService timer1;
     ScheduledExecutorService timer2;
+
+    ArrayList<Uri> uriQueue1 = new ArrayList<>();
+    ArrayList<Uri> uriQueue2 = new ArrayList<>();
     public static final int maxVolume = 100;
     public static final int Choose_File = 99;
     public static final int Choose_File2 = 98;
@@ -77,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
         ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
         TextView SpeedText = findViewById(R.id.SpeedText);
         TextView SpeedText2 = findViewById(R.id.SpeedText2);
+        Button ReverbButton = findViewById(R.id.ReverbButton);
+        Button BassBoostButton = findViewById(R.id.BassBoostButton);
 
         ImageButton Track1EffectsButton = findViewById(R.id.Track1EffectsButton);
         ImageButton Track2EffectsButton = findViewById(R.id.Track2EffectsButton);
@@ -89,14 +91,35 @@ public class MainActivity extends AppCompatActivity {
         TextView SongProgress1 = findViewById(R.id.SongProgress1);
         TextView SongProgress2 = findViewById(R.id.SongProgress2);
         SeekBar1 = findViewById(R.id.SeekBar1);
-        seekbar2 = findViewById(R.id.SeekBar2);
-        SeekBar VolumeBar1 = findViewById(R.id.VolumeBar1);
-        SeekBar VolumeBar2 = findViewById(R.id.VolumeBar2);
+        SeekBar2 = findViewById(R.id.SeekBar2);
+        VolumeBar1 = findViewById(R.id.VolumeBar1);
+        VolumeBar2 = findViewById(R.id.VolumeBar2);
 
 
         /** ==================================================================
          *                      Top - Effects Panel
-         * Loop
+         * Skip
+         */
+        SkipTrack1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer1 != null) {
+                    mediaPlayer1.seekTo(mediaPlayer1.getDuration());
+                    mediaPlayer1.start();
+                }
+            }
+        });
+        SkipTrack2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer2 != null) {
+                    mediaPlayer2.seekTo(mediaPlayer2.getDuration());
+                    mediaPlayer2.start();
+                }
+            }
+        });
+        /**
+         * Looping
          */
         SetLooping1.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -132,8 +155,11 @@ public class MainActivity extends AppCompatActivity {
         SpeedBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //nothing
-                if ((mediaPlayer1 != null) && (mediaPlayer1.isPlaying())) {
+                if ((mediaPlayer1 != null) && (!mediaPlayer1.isPlaying())) {
+                    mediaPlayer1.setPlaybackParams(
+                            mediaPlayer1.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
+                    mediaPlayer1.pause();
+                } else if (mediaPlayer1 != null){
                     mediaPlayer1.setPlaybackParams(
                             mediaPlayer1.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
                 }
@@ -152,8 +178,11 @@ public class MainActivity extends AppCompatActivity {
         SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                //nothing
-                if ((mediaPlayer2 != null) && (mediaPlayer2.isPlaying())) {
+                if ((mediaPlayer2 != null) && (!mediaPlayer2.isPlaying())) {
+                    mediaPlayer2.setPlaybackParams(
+                            mediaPlayer2.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
+                    mediaPlayer2.pause();
+                } else if (mediaPlayer2 != null){
                     mediaPlayer2.setPlaybackParams(
                             mediaPlayer2.getPlaybackParams().setSpeed(seekBar.getProgress() / 50f));
                 }
@@ -172,7 +201,11 @@ public class MainActivity extends AppCompatActivity {
         ResetSpeed1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer1 != null) {
+                if ((mediaPlayer1 != null) && (!mediaPlayer1.isPlaying())) {
+                    mediaPlayer1.setPlaybackParams(
+                            mediaPlayer1.getPlaybackParams().setSpeed(1));
+                    mediaPlayer1.pause();
+                } else if (mediaPlayer1 != null) {
                     mediaPlayer1.setPlaybackParams(
                             mediaPlayer1.getPlaybackParams().setSpeed(1));
                 }
@@ -182,21 +215,48 @@ public class MainActivity extends AppCompatActivity {
         ResetSpeed2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mediaPlayer2 != null) {
+                if ((mediaPlayer2 != null) && (!mediaPlayer2.isPlaying())) {
+                    mediaPlayer2.setPlaybackParams(
+                            mediaPlayer2.getPlaybackParams().setSpeed(1));
+                    mediaPlayer2.pause();
+                } else if (mediaPlayer2 != null) {
                     mediaPlayer2.setPlaybackParams(
                             mediaPlayer2.getPlaybackParams().setSpeed(1));
                 }
                 SpeedBar2.setProgress(50);
             }
         });
+        /**
+         * Extra Effects
+         */
+        ReverbButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast=Toast.makeText(getApplicationContext(),"Coming Soon.",
+                        Toast. LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+            }
+        });
+        BassBoostButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast=Toast.makeText(getApplicationContext(),"Coming Soon.",
+                        Toast. LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP, 0, 0);
+                toast.show();
+            }
+        });
 
         /** ==================================================================
          *                      Bottom - Media Playback
-         * Track Effects Settings
+         * Open Settings
          */
         Track1EffectsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ReverbButton.setVisibility(View.VISIBLE);
+                BassBoostButton.setVisibility(View.VISIBLE);
                 TopTitleTrack1.setVisibility(View.VISIBLE);
                 SkipTrack1.setVisibility(View.VISIBLE);
                 SetLooping1.setVisibility(View.VISIBLE);
@@ -214,6 +274,8 @@ public class MainActivity extends AppCompatActivity {
         Track2EffectsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ReverbButton.setVisibility(View.VISIBLE);
+                BassBoostButton.setVisibility(View.VISIBLE);
                 TopTitleTrack1.setVisibility(View.GONE);
                 SkipTrack1.setVisibility(View.GONE);
                 SetLooping1.setVisibility(View.GONE);
@@ -267,6 +329,11 @@ public class MainActivity extends AppCompatActivity {
                         mediaPlayer1.start();
                         PlayTrack1.setText("PAUSE");
 
+                        mediaPlayer1.setPlaybackParams(
+                                mediaPlayer1.getPlaybackParams().setSpeed(SpeedBar1.getProgress() / 50f));
+                        final float volume = (float) (1 - (Math.log(maxVolume - VolumeBar1.getProgress()) / Math.log(maxVolume)));
+                        mediaPlayer1.setVolume(volume, volume);
+
                         timer1 = Executors.newScheduledThreadPool(1);
                         timer1.scheduleAtFixedRate(new Runnable() {
                             @Override
@@ -296,14 +363,19 @@ public class MainActivity extends AppCompatActivity {
                         mediaPlayer2.start();
                         PlayTrack2.setText("PAUSE");
 
+                        mediaPlayer2.setPlaybackParams(
+                                mediaPlayer2.getPlaybackParams().setSpeed(SpeedBar2.getProgress() / 50f));
+                        final float volume = (float) (1 - (Math.log(maxVolume - VolumeBar2.getProgress()) / Math.log(maxVolume)));
+                        mediaPlayer2.setVolume(volume, volume);
+
                         timer2 = Executors.newScheduledThreadPool(1);
                         timer2.scheduleAtFixedRate(new Runnable() {
                             @Override
                             public void run() {
                                 if (mediaPlayer2 != null) {
                                     // reset the seek bar
-                                    if (!seekbar2.isPressed()) {
-                                        seekbar2.setProgress(mediaPlayer2.getCurrentPosition());
+                                    if (!SeekBar2.isPressed()) {
+                                        SeekBar2.setProgress(mediaPlayer2.getCurrentPosition());
                                     }
                                 }
                             }
@@ -338,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-        seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SeekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 if (mediaPlayer2 != null){
@@ -433,6 +505,8 @@ public class MainActivity extends AppCompatActivity {
         SpeedBar2.setVisibility(View.GONE);
         ResetSpeed2.setVisibility(View.GONE);
         SpeedText2.setVisibility(View.GONE);
+        ReverbButton.setVisibility(View.GONE);
+        BassBoostButton.setVisibility(View.GONE);
     }
 
     /**
@@ -447,13 +521,19 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == Choose_File && resultCode == RESULT_OK){
             if (data != null){
                 Uri uri = data.getData();
-                createMediaPlayer(uri, 1);
+                uriQueue1.add(uri);
+                if (mediaPlayer1 == null) {
+                    createMediaPlayer(uri, 1);
+                }
             }
         }
         else if (requestCode == Choose_File2 && resultCode == RESULT_OK){
             if (data != null){
                 Uri uri = data.getData();
-                createMediaPlayer(uri, 2);
+                uriQueue2.add(uri);
+                if (mediaPlayer2 == null) {
+                    createMediaPlayer(uri, 2);
+                }
             }
         }
     }
@@ -471,6 +551,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer1.setDataSource(getApplicationContext(), uri);
                 mediaPlayer1.prepare();
 
+                // Apply settings. This all happens without pressing play.
 
                 String titleName = getNameFromUri(uri);
                 String titleNameShort = titleName;
@@ -496,8 +577,14 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         releaseMediaPlayer(1);
-                        PlayTrack1.setText("PLAY");
-                        PlayTrack1.setEnabled(false);
+                        uriQueue1.remove(0);
+                        if (uriQueue1.size() > 0){
+                            createMediaPlayer(uriQueue1.get(0), 1);
+                            PlayTrack1.performClick();
+                        } else {
+                            PlayTrack1.setText("PLAY");
+                            PlayTrack1.setEnabled(false);
+                        }
                     }
                 });
             } catch (IOException e) {
@@ -525,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
                 if (titleName.length() > 42) {
                     titleName = titleName.substring(0, 42) + "..";
                 }
-                TopTitleTrack2.setText("Queue 1 (" + titleName + ")");
+                TopTitleTrack2.setText("Queue 2 (" + titleName + ")");
                 PlayTrack2.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer2.getDuration();
@@ -533,15 +620,21 @@ public class MainActivity extends AppCompatActivity {
                 long maxMinutes = maxSeconds / 60;
                 long showMaxSeconds = maxSeconds - (maxMinutes * 60);
                 duration2 = maxMinutes + ":" + showMaxSeconds;
-                seekbar2.setMax(maxMilliseconds);
-                seekbar2.setProgress(0);
+                SeekBar2.setMax(maxMilliseconds);
+                SeekBar2.setProgress(0);
 
                 mediaPlayer2.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                     @Override
                     public void onCompletion(MediaPlayer mp) {
                         releaseMediaPlayer(2);
-                        PlayTrack2.setText("PLAY");
-                        PlayTrack2.setEnabled(false);
+                        uriQueue2.remove(0);
+                        if (uriQueue2.size() > 0){
+                            createMediaPlayer(uriQueue2.get(0), 2);
+                            PlayTrack2.performClick();
+                        } else {
+                            PlayTrack2.setText("PLAY");
+                            PlayTrack2.setEnabled(false);
+                        }
                     }
                 });
             } catch (IOException e) {
@@ -604,8 +697,8 @@ public class MainActivity extends AppCompatActivity {
             }
             PlayTrack2.setEnabled(false);
             TitleTrack2.setText("");
-            seekbar2.setMax(100);
-            seekbar2.setProgress(0);
+            SeekBar2.setMax(100);
+            SeekBar2.setProgress(0);
         }
     }
 }
