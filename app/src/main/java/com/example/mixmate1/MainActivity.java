@@ -36,8 +36,8 @@ public class MainActivity extends AppCompatActivity {
     SeekBar SpeedBar2;
     TextView TitleTrack1;
     TextView TitleTrack2;
-    Button PlayTrack1;
-    Button PlayTrack2;
+    ImageButton PlayTrack1;
+    ImageButton PlayTrack2;
     SeekBar SeekBar1;
     SeekBar SeekBar2;
     String duration1;
@@ -323,11 +323,11 @@ public class MainActivity extends AppCompatActivity {
                 if (mediaPlayer1 != null) {
                     if (mediaPlayer1.isPlaying()){
                         mediaPlayer1.pause();
-                        PlayTrack1.setText("PLAY");
+                        PlayTrack1.setImageResource(R.drawable.playtrack);
                         timer1.shutdown();
                     } else {
                         mediaPlayer1.start();
-                        PlayTrack1.setText("PAUSE");
+                        PlayTrack1.setImageResource(R.drawable.playtrackpause);
 
                         mediaPlayer1.setPlaybackParams(
                                 mediaPlayer1.getPlaybackParams().setSpeed(SpeedBar1.getProgress() / 50f));
@@ -356,12 +356,12 @@ public class MainActivity extends AppCompatActivity {
                 if (mediaPlayer2 != null) {
                     if (mediaPlayer2.isPlaying()){
                         mediaPlayer2.pause();
-                        PlayTrack2.setText("PLAY");
+                        PlayTrack2.setImageResource(R.drawable.playtrack);
                         timer2.shutdown();
                     } else {
                         //mediaPlayer2.setPlaybackParams(mediaPlayer2.getPlaybackParams().setSpeed(0.5f));
                         mediaPlayer2.start();
-                        PlayTrack2.setText("PAUSE");
+                        PlayTrack2.setImageResource(R.drawable.playtrackpause);
 
                         mediaPlayer2.setPlaybackParams(
                                 mediaPlayer2.getPlaybackParams().setSpeed(SpeedBar2.getProgress() / 50f));
@@ -564,6 +564,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 TopTitleTrack1.setText("Cue 1 (" + titleName + ")");
                 PlayTrack1.setEnabled(true);
+                PlayTrack1.setImageResource(R.drawable.playtrack);
 
                 int maxMilliseconds = mediaPlayer1.getDuration();
                 long maxSeconds = maxMilliseconds / 1000;
@@ -582,7 +583,7 @@ public class MainActivity extends AppCompatActivity {
                             createMediaPlayer(uriQueue1.get(0), 1);
                             PlayTrack1.performClick();
                         } else {
-                            PlayTrack1.setText("PLAY");
+                            PlayTrack1.setImageResource(R.drawable.playtrackdisabled);
                             PlayTrack1.setEnabled(false);
                         }
                     }
@@ -614,6 +615,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 TopTitleTrack2.setText("Cue 2 (" + titleName + ")");
                 PlayTrack2.setEnabled(true);
+                PlayTrack2.setImageResource(R.drawable.playtrack);
 
                 int maxMilliseconds = mediaPlayer2.getDuration();
                 long maxSeconds = maxMilliseconds / 1000;
@@ -632,7 +634,7 @@ public class MainActivity extends AppCompatActivity {
                             createMediaPlayer(uriQueue2.get(0), 2);
                             PlayTrack2.performClick();
                         } else {
-                            PlayTrack2.setText("PLAY");
+                            PlayTrack2.setImageResource(R.drawable.playtrackdisabled);
                             PlayTrack2.setEnabled(false);
                         }
                     }
@@ -684,6 +686,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer1 = null;
             }
             PlayTrack1.setEnabled(false);
+            PlayTrack1.setImageResource(R.drawable.playtrackdisabled);
             TitleTrack1.setText("");
             SeekBar1.setMax(100);
             SeekBar1.setProgress(0);
@@ -696,6 +699,7 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer2 = null;
             }
             PlayTrack2.setEnabled(false);
+            PlayTrack2.setImageResource(R.drawable.playtrackdisabled);
             TitleTrack2.setText("");
             SeekBar2.setMax(100);
             SeekBar2.setProgress(0);

@@ -2701,7 +2701,6 @@ int drawable abc_textfield_search_material 0x7f070076
 int drawable abc_vector_test 0x7f070077
 int drawable avd_hide_password 0x7f070078
 int drawable avd_show_password 0x7f070079
-int drawable background1 0x7f07007a
 int drawable background2 0x7f07007b
 int drawable btn_checkbox_checked_mtrl 0x7f07007c
 int drawable btn_checkbox_checked_to_unchecked_mtrl_animation 0x7f07007d
@@ -2804,6 +2803,9 @@ int drawable notification_template_icon_bg 0x7f0700dd
 int drawable notification_template_icon_low_bg 0x7f0700de
 int drawable notification_tile_bg 0x7f0700df
 int drawable notify_panel_notification_icon_bg 0x7f0700e0
+int drawable playtrack 0x7f0700e9
+int drawable playtrackdisabled 0x7f0700ea
+int drawable playtrackpause 0x7f0700eb
 int drawable setlooping 0x7f0700e1
 int drawable setloopingoff 0x7f0700e2
 int drawable setloopingon 0x7f0700e8

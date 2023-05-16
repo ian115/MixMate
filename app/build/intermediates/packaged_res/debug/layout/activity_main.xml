@@ -236,16 +236,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/GuidelineRow1" />
 
-    <Button
+    <ImageButton
         android:id="@+id/PlayTrack1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PLAY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow1end"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/FileTrack1"
-        app:layout_constraintTop_toTopOf="@+id/GuidelineRow1" />
+        app:layout_constraintTop_toTopOf="@+id/GuidelineRow1"
+        app:srcCompat="@drawable/playtrack" />
 
     <SeekBar
         android:id="@+id/VolumeBar1"
@@ -397,16 +399,18 @@
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="@+id/GuidelineRow2" />
 
-    <Button
+    <ImageButton
         android:id="@+id/PlayTrack2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="PLAY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@null"
+        android:scaleType="fitXY"
         app:layout_constraintBottom_toTopOf="@+id/GuidelineRow2end"
-        app:layout_constraintEnd_toStartOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/FileTrack2"
-        app:layout_constraintTop_toTopOf="@+id/GuidelineRow2" />
+        app:layout_constraintTop_toTopOf="@+id/GuidelineRow2"
+        app:srcCompat="@drawable/playtrack" />
 
     <SeekBar
         android:id="@+id/VolumeBar2"
