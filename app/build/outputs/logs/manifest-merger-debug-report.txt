@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
+ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\ianla\.gradle\caches\transforms-3\9ae6143ba7d88d1cbf68916d08d2afcb\transformed\material-1.8.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\ianla\.gradle\caches\transforms-3\fe5722c2d28764b765710ac6c318c6e8\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\ianla\.gradle\caches\transforms-3\41dcf42bc854479e43f628ab1a52618d\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
@@ -44,25 +44,29 @@ MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\ianla\.gradle\ca
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\ianla\.gradle\caches\transforms-3\7035a2135f2972f98fa12a92c56bc089\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\ianla\.gradle\caches\transforms-3\2ff53fee4bc33a1da5cdbfe55cfab510\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\ianla\.gradle\caches\transforms-3\a21766c7c1a00190a294c68fee7e28e6\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
-INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
+INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
 	package
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
-		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-26:12
+		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:1-25:12
 		INJECTED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:2:11-69
+uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
+ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:4:5-80
+	android:name
+		ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:4:22-77
 application
 ADDED from C:\Users\ianla\Desktop\Rest\Uni\ProjectManagementCode\app\src\main\AndroidManifest.xml:5:5-24:19
 MERGED from [com.google.android.material:material:1.8.0] C:\Users\ianla\.gradle\caches\transforms-3\9ae6143ba7d88d1cbf68916d08d2afcb\transformed\material-1.8.0\AndroidManifest.xml:24:5-20

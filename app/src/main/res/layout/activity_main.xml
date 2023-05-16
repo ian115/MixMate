@@ -7,29 +7,24 @@
     tools:context=".MainActivity">
 
     <!-- Top Effects Panel-->
-
-    <!--<ImageButton
-        android:id="@+id/ResetSpeed2"
-        android:layout_width="wrap_content"
+    <TextView
+        android:id="@+id/TopTitleTrack1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:background="@null"
+        android:paddingTop="12dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.087"
-        app:layout_constraintStart_toEndOf="@+id/SpeedBar2"
-        app:layout_constraintTop_toBottomOf="@+id/ResetSpeed1"
-        app:srcCompat="@drawable/ic_action_name" />
-
-    <SeekBar
-        android:id="@+id/SpeedBar2"
-        android:layout_width="179dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="68dp"
-        android:max="100"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/TopTitleTrack2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="12dp"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.268"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/SpeedBar1" />-->
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
         android:id="@+id/SkipTrack1"
@@ -88,6 +83,71 @@
 
             <ImageButton
                 android:id="@+id/ResetSpeed1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                app:srcCompat="@drawable/ic_action_name" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <!--Same thing again, for Track player 2-->
+    <ImageButton
+        android:id="@+id/SkipTrack2"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline11"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:srcCompat="@drawable/skiptrack" />
+
+    <ToggleButton
+        android:id="@+id/SetLooping2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:background="@drawable/loopingtogglebuttonbg"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline12"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/guideline11"
+        app:layout_constraintTop_toTopOf="@+id/guideline9"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/guideline10"
+        app:layout_constraintEnd_toStartOf="@+id/guideline13"
+        app:layout_constraintStart_toStartOf="@+id/guideline12"
+        app:layout_constraintTop_toTopOf="@+id/guideline9">
+
+        <SeekBar
+            android:id="@+id/SpeedBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/SpeedText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="4dp"
+                android:text="Speed" />
+            <ImageButton
+                android:id="@+id/ResetSpeed2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
@@ -368,16 +428,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:layout_constraintGuide_percent="0.59" />
-
-    <TextView
-        android:id="@+id/TopTitleTrack1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:paddingTop="12dp"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

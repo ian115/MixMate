@@ -1,15 +1,17 @@
 package com.example.mixmate1;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
+import android.media.audiofx.BassBoost;
 import android.media.audiofx.PresetReverb;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,23 +20,25 @@ import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-
-import org.w3c.dom.Text;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
     TextView TopTitleTrack1;
-    //TextView TopTitleTrack2;
+    TextView TopTitleTrack2;
     TextView TitleTrack1;
     TextView TitleTrack2;
     Button PlayTrack1;
@@ -62,13 +66,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         TopTitleTrack1 = findViewById(R.id.TopTitleTrack1);
-        //TopTitleTrack2 = findViewById(R.id.TopTitleTrack2);
+        TopTitleTrack2 = findViewById(R.id.TopTitleTrack2);
         ImageButton SkipTrack1 = findViewById(R.id.SkipTrack1);
+        ImageButton SkipTrack2 = findViewById(R.id.SkipTrack2);
         ToggleButton SetLooping1 = findViewById(R.id.SetLooping1);
+        ToggleButton SetLooping2 = findViewById(R.id.SetLooping2);
         SeekBar SpeedBar1 = findViewById(R.id.SpeedBar1);
-        //SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
+        SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
         ImageButton ResetSpeed1 = findViewById(R.id.ResetSpeed1);
-        //ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
+        ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
+        TextView SpeedText = findViewById(R.id.SpeedText);
+        TextView SpeedText2 = findViewById(R.id.SpeedText2);
 
         ImageButton Track1EffectsButton = findViewById(R.id.Track1EffectsButton);
         ImageButton Track2EffectsButton = findViewById(R.id.Track2EffectsButton);
@@ -104,6 +112,20 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        SetLooping2.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton toggleButton, boolean isChecked) {
+                if (mediaPlayer2 != null) {
+                    if (isChecked) {
+                        mediaPlayer2.setLooping(true);
+                    } else {
+                        mediaPlayer2.setLooping(false);
+                    }
+                } else {
+                    SetLooping2.setChecked(false);
+                }
+            }
+        });
         /**
          * Speed
          */
@@ -127,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                 //nothing
             }
         });
-        /*SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        SpeedBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 //nothing
@@ -146,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
                 //nothing
             }
-        });*/
+        });
         ResetSpeed1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                 SpeedBar1.setProgress(50);
             }
         });
-        /*ResetSpeed2.setOnClickListener(new View.OnClickListener() {
+        ResetSpeed2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mediaPlayer2 != null) {
@@ -166,7 +188,7 @@ public class MainActivity extends AppCompatActivity {
                 }
                 SpeedBar2.setProgress(50);
             }
-        });*/
+        });
 
         /** ==================================================================
          *                      Bottom - Media Playback
@@ -180,7 +202,13 @@ public class MainActivity extends AppCompatActivity {
                 SetLooping1.setVisibility(View.VISIBLE);
                 SpeedBar1.setVisibility(View.VISIBLE);
                 ResetSpeed1.setVisibility(View.VISIBLE);
-                findViewById(R.id.SpeedText).setVisibility(View.VISIBLE);
+                SpeedText.setVisibility(View.VISIBLE);
+                TopTitleTrack2.setVisibility(View.GONE);
+                SkipTrack2.setVisibility(View.GONE);
+                SetLooping2.setVisibility(View.GONE);
+                SpeedBar2.setVisibility(View.GONE);
+                ResetSpeed2.setVisibility(View.GONE);
+                SpeedText2.setVisibility(View.GONE);
             }
         });
         Track2EffectsButton.setOnClickListener(new View.OnClickListener() {
@@ -191,7 +219,13 @@ public class MainActivity extends AppCompatActivity {
                 SetLooping1.setVisibility(View.GONE);
                 SpeedBar1.setVisibility(View.GONE);
                 ResetSpeed1.setVisibility(View.GONE);
-                findViewById(R.id.SpeedText).setVisibility(View.VISIBLE);
+                SpeedText.setVisibility(View.GONE);
+                TopTitleTrack2.setVisibility(View.VISIBLE);
+                SkipTrack2.setVisibility(View.VISIBLE);
+                SetLooping2.setVisibility(View.VISIBLE);
+                SpeedBar2.setVisibility(View.VISIBLE);
+                ResetSpeed2.setVisibility(View.VISIBLE);
+                SpeedText2.setVisibility(View.VISIBLE);
             }
         });
 
@@ -380,10 +414,25 @@ public class MainActivity extends AppCompatActivity {
         VolumeBar1.setProgress(100);
         VolumeBar2.setProgress(100);
         SpeedBar1.setProgress(50);
-        //SpeedBar2.setProgress(50);
+        SpeedBar2.setProgress(50);
         SetLooping1.setText(null);
         SetLooping1.setTextOn(null);
         SetLooping1.setTextOff(null);
+        SetLooping2.setText(null);
+        SetLooping2.setTextOn(null);
+        SetLooping2.setTextOff(null);
+        TopTitleTrack1.setVisibility(View.GONE);
+        SkipTrack1.setVisibility(View.GONE);
+        SetLooping1.setVisibility(View.GONE);
+        SpeedBar1.setVisibility(View.GONE);
+        ResetSpeed1.setVisibility(View.GONE);
+        SpeedText.setVisibility(View.GONE);
+        TopTitleTrack2.setVisibility(View.GONE);
+        SkipTrack2.setVisibility(View.GONE);
+        SetLooping2.setVisibility(View.GONE);
+        SpeedBar2.setVisibility(View.GONE);
+        ResetSpeed2.setVisibility(View.GONE);
+        SpeedText2.setVisibility(View.GONE);
     }
 
     /**
@@ -422,13 +471,6 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer1.setDataSource(getApplicationContext(), uri);
                 mediaPlayer1.prepare();
 
-                /*if (mediaPlayer1 != null) {
-                    PresetReverb pReverb = new PresetReverb(1,0);
-                    pReverb.setPreset(PresetReverb.PRESET_PLATE);
-                    pReverb.setEnabled(true);
-                    mediaPlayer1.attachAuxEffect(pReverb.getId());
-                    mediaPlayer1.setAuxEffectSendLevel(1.0f);
-                }*/
 
                 String titleName = getNameFromUri(uri);
                 String titleNameShort = titleName;
@@ -475,11 +517,15 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer2.prepare();
 
                 String titleName = getNameFromUri(uri);
+                String titleNameShort = titleName;
                 if (titleName.length() > 21) {
-                    titleName = titleName.substring(0, 21) + "..";
+                    titleNameShort = titleName.substring(0, 21) + "..";
                 }
-                TitleTrack2.setText(titleName);
-                //TopTitleTrack2.setText(getNameFromUri(uri));
+                TitleTrack2.setText(titleNameShort);
+                if (titleName.length() > 42) {
+                    titleName = titleName.substring(0, 42) + "..";
+                }
+                TopTitleTrack2.setText("Queue 1 (" + titleName + ")");
                 PlayTrack2.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer2.getDuration();
@@ -561,14 +607,5 @@ public class MainActivity extends AppCompatActivity {
             seekbar2.setMax(100);
             seekbar2.setProgress(0);
         }
-    }
-
-    public static MediaPlayer getMediaPlayer(Integer trackNumber){
-        if (trackNumber == 1) {
-            return mediaPlayer1;
-        } else {
-            return mediaPlayer2;
-        }
-
     }
 }

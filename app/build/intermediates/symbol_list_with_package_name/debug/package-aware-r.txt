@@ -2829,6 +2829,7 @@ id NO_DEBUG
 id PlayTrack1
 id PlayTrack2
 id ResetSpeed1
+id ResetSpeed2
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -2837,14 +2838,21 @@ id SYM
 id SeekBar1
 id SeekBar2
 id SetLooping1
+id SetLooping2
 id SkipTrack1
+id SkipTrack2
 id SongProgress1
 id SongProgress2
 id SpeedBar1
+id SpeedBar2
+id SpeedText
+id SpeedText2
 id TOP_END
 id TOP_START
 id TitleTrack1
 id TitleTrack2
+id TopTitleTrack1
+id TopTitleTrack2
 id Track1EffectsButton
 id Track2EffectsButton
 id VolumeBar1
@@ -3289,7 +3297,6 @@ id textSpacerNoButtons
 id textSpacerNoTitle
 id textStart
 id textTop
-id textView
 id text_input_end_icon
 id text_input_error_icon
 id text_input_start_icon
