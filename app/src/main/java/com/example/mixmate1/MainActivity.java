@@ -562,7 +562,7 @@ public class MainActivity extends AppCompatActivity {
                 if (titleName.length() > 42) {
                     titleName = titleName.substring(0, 42) + "..";
                 }
-                TopTitleTrack1.setText("Queue 1 (" + titleName + ")");
+                TopTitleTrack1.setText("Cue 1 (" + titleName + ")");
                 PlayTrack1.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer1.getDuration();
@@ -612,7 +612,7 @@ public class MainActivity extends AppCompatActivity {
                 if (titleName.length() > 42) {
                     titleName = titleName.substring(0, 42) + "..";
                 }
-                TopTitleTrack2.setText("Queue 2 (" + titleName + ")");
+                TopTitleTrack2.setText("Cue 2 (" + titleName + ")");
                 PlayTrack2.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer2.getDuration();

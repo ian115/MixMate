@@ -7,6 +7,8 @@ color purple_700
 color teal_200
 color teal_700
 color white
+drawable background1
+drawable background2
 drawable ic_action_name
 drawable ic_launcher_background
 drawable ic_launcher_foreground
@@ -14,6 +16,7 @@ drawable loopingtogglebutton
 drawable loopingtogglebuttonbg
 drawable setlooping
 drawable setloopingoff
+drawable setloopingon
 drawable skiptrack
 drawable tracksettings
 id AdSpace
