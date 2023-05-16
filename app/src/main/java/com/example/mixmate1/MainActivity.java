@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.media.AudioAttributes;
 import android.media.MediaPlayer;
+import android.media.audiofx.PresetReverb;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -24,12 +25,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class MainActivity extends AppCompatActivity {
+    TextView TopTitleTrack1;
+    //TextView TopTitleTrack2;
     TextView TitleTrack1;
     TextView TitleTrack2;
     Button PlayTrack1;
@@ -56,12 +61,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        TopTitleTrack1 = findViewById(R.id.TopTitleTrack1);
+        //TopTitleTrack2 = findViewById(R.id.TopTitleTrack2);
+        ImageButton SkipTrack1 = findViewById(R.id.SkipTrack1);
         ToggleButton SetLooping1 = findViewById(R.id.SetLooping1);
         SeekBar SpeedBar1 = findViewById(R.id.SpeedBar1);
         //SeekBar SpeedBar2 = findViewById(R.id.SpeedBar2);
         ImageButton ResetSpeed1 = findViewById(R.id.ResetSpeed1);
         //ImageButton ResetSpeed2 = findViewById(R.id.ResetSpeed2);
 
+        ImageButton Track1EffectsButton = findViewById(R.id.Track1EffectsButton);
+        ImageButton Track2EffectsButton = findViewById(R.id.Track2EffectsButton);
         Button FileTrack1 = findViewById(R.id.FileTrack1);
         Button FileTrack2 = findViewById(R.id.FileTrack2);
         PlayTrack1 = findViewById(R.id.PlayTrack1);
@@ -160,6 +170,32 @@ public class MainActivity extends AppCompatActivity {
 
         /** ==================================================================
          *                      Bottom - Media Playback
+         * Track Effects Settings
+         */
+        Track1EffectsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TopTitleTrack1.setVisibility(View.VISIBLE);
+                SkipTrack1.setVisibility(View.VISIBLE);
+                SetLooping1.setVisibility(View.VISIBLE);
+                SpeedBar1.setVisibility(View.VISIBLE);
+                ResetSpeed1.setVisibility(View.VISIBLE);
+                findViewById(R.id.SpeedText).setVisibility(View.VISIBLE);
+            }
+        });
+        Track2EffectsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TopTitleTrack1.setVisibility(View.GONE);
+                SkipTrack1.setVisibility(View.GONE);
+                SetLooping1.setVisibility(View.GONE);
+                SpeedBar1.setVisibility(View.GONE);
+                ResetSpeed1.setVisibility(View.GONE);
+                findViewById(R.id.SpeedText).setVisibility(View.VISIBLE);
+            }
+        });
+
+        /**
          * Open File
          */
         FileTrack1.setOnClickListener(new View.OnClickListener() {
@@ -386,7 +422,24 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer1.setDataSource(getApplicationContext(), uri);
                 mediaPlayer1.prepare();
 
-                TitleTrack1.setText(getNameFromUri(uri));
+                /*if (mediaPlayer1 != null) {
+                    PresetReverb pReverb = new PresetReverb(1,0);
+                    pReverb.setPreset(PresetReverb.PRESET_PLATE);
+                    pReverb.setEnabled(true);
+                    mediaPlayer1.attachAuxEffect(pReverb.getId());
+                    mediaPlayer1.setAuxEffectSendLevel(1.0f);
+                }*/
+
+                String titleName = getNameFromUri(uri);
+                String titleNameShort = titleName;
+                if (titleName.length() > 21) {
+                    titleNameShort = titleName.substring(0, 21) + "..";
+                }
+                TitleTrack1.setText(titleNameShort);
+                if (titleName.length() > 42) {
+                    titleName = titleName.substring(0, 42) + "..";
+                }
+                TopTitleTrack1.setText("Queue 1 (" + titleName + ")");
                 PlayTrack1.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer1.getDuration();
@@ -421,7 +474,12 @@ public class MainActivity extends AppCompatActivity {
                 mediaPlayer2.setDataSource(getApplicationContext(), uri);
                 mediaPlayer2.prepare();
 
-                TitleTrack2.setText(getNameFromUri(uri));
+                String titleName = getNameFromUri(uri);
+                if (titleName.length() > 21) {
+                    titleName = titleName.substring(0, 21) + "..";
+                }
+                TitleTrack2.setText(titleName);
+                //TopTitleTrack2.setText(getNameFromUri(uri));
                 PlayTrack2.setEnabled(true);
 
                 int maxMilliseconds = mediaPlayer2.getDuration();
@@ -459,9 +517,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if (cursor != null) {
             cursor.close();
-        }
-        if (fileName.length() > 21) {
-            fileName = fileName.substring(0, 21) + "..";
         }
         return fileName;
     }
