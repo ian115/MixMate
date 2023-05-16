@@ -2814,6 +2814,7 @@ id ALT
 id AdSpace
 id BOTTOM_END
 id BOTTOM_START
+id BassBoostButton
 id CTRL
 id FUNCTION
 id FileTrack1
@@ -2823,13 +2824,13 @@ id GuidelineRow1
 id GuidelineRow1end
 id GuidelineRow2
 id GuidelineRow2end
-id GuidelineTopPanel1
 id META
 id NO_DEBUG
 id PlayTrack1
 id PlayTrack2
 id ResetSpeed1
 id ResetSpeed2
+id ReverbButton
 id SHIFT
 id SHOW_ALL
 id SHOW_PATH
@@ -3055,6 +3056,7 @@ id guideline11
 id guideline12
 id guideline13
 id guideline2
+id guideline3
 id guideline9
 id header_title
 id hideable
@@ -3088,6 +3090,7 @@ id line3
 id linear
 id linearLayout
 id linearLayout2
+id linearLayout3
 id listMode
 id list_item
 id m3_side_sheet

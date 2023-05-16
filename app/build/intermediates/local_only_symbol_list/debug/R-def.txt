@@ -17,6 +17,7 @@ drawable setloopingoff
 drawable skiptrack
 drawable tracksettings
 id AdSpace
+id BassBoostButton
 id FileTrack1
 id FileTrack2
 id GuidelineColumn1
@@ -24,11 +25,11 @@ id GuidelineRow1
 id GuidelineRow1end
 id GuidelineRow2
 id GuidelineRow2end
-id GuidelineTopPanel1
 id PlayTrack1
 id PlayTrack2
 id ResetSpeed1
 id ResetSpeed2
+id ReverbButton
 id SeekBar1
 id SeekBar2
 id SetLooping1
@@ -56,9 +57,11 @@ id guideline11
 id guideline12
 id guideline13
 id guideline2
+id guideline3
 id guideline9
 id linearLayout
 id linearLayout2
+id linearLayout3
 id toggle
 layout activity_main
 mipmap ic_launcher
